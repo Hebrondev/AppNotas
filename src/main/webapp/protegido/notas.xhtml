@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Mis notas</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body>
+        <h:form id="formNota">
+            <p:growl id="mensajes" showSummary="true" showDetail="true"/>
+
+            <p:panel header="Gestión de notas">
+                <p:outputLabel for="encabezado" value="Encabezado"/>
+                <p:inputText id="encabezado"
+                             value="#{notaController.nota.encabezado}"
+                             maxlength="255"
+                             required="true"
+                             requiredMessage="Campo requerido"/>
+                <p:message for="encabezado"/>
+
+                <p:outputLabel for="cuerpo" value="Cuerpo"/>
+                <p:inputTextarea id="cuerpo"
+                                 value="#{notaController.nota.cuerpo}"
+                                 maxlength="255"
+                                 required="true"
+                                 requiredMessage="Campo requerido"/>
+                <p:message for="cuerpo"/>
+
+                <p:outputLabel for="categoria" value="Categoría"/>
+                <p:selectOneMenu id="categoria"
+                                 value="#{notaController.codigoCategoria}"
+                                 required="true"
+                                 requiredMessage="Campo requerido">
+                    <f:selectItem itemLabel="Seleccione una categoría"
+                                  itemValue="#{null}"
+                                  noSelectionOption="true"/>
+                    <f:selectItems value="#{notaController.categorias}"
+                                   var="categoria"
+                                   itemLabel="#{categoria.nombre}"
+                                   itemValue="#{categoria.codigo}"/>
+                </p:selectOneMenu>
+                <p:message for="categoria"/>
+
+                <p:commandButton value="Guardar"
+                                 action="#{notaController.guardar}"
+                                 update="@form"/>
+                <p:commandButton value="Cancelar"
+                                 action="#{notaController.cancelar}"
+                                 process="@this"
+                                 update="@form"
+                                 immediate="true"/>
+            </p:panel>
+
+            <p:dataTable value="#{notaController.notas}"
+                         var="item"
+                         emptyMessage="No hay notas registradas">
+                <p:column headerText="Encabezado">
+                    <h:outputText value="#{item.encabezado}"/>
+                </p:column>
+                <p:column headerText="Categoría">
+                    <h:outputText value="#{item.categoria.nombre}"/>
+                </p:column>
+                <p:column headerText="Cuerpo">
+                    <h:outputText value="#{item.cuerpo}"/>
+                </p:column>
+                <p:column headerText="Fecha">
+                    <h:outputText value="#{item.fecha}">
+                        <f:convertDateTime pattern="yyyy-MM-dd HH:mm"/>
+                    </h:outputText>
+                </p:column>
+                <p:column headerText="Acciones">
+                    <p:commandButton value="Editar"
+                                     action="#{notaController.seleccionar(item)}"
+                                     process="@this"
+                                     update="@form"/>
+                    <p:commandButton value="Eliminar"
+                                     action="#{notaController.eliminar(item)}"
+                                     process="@this"
+                                     update="@form"/>
+                </p:column>
+            </p:dataTable>
+
+            <h:link value="Volver" outcome="/protegido/principal"/>
+        </h:form>
+    </h:body>
+</html>
