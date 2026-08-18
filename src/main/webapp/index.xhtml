@@ -14,7 +14,7 @@
                 <p:inputText id="txtUsuario" value="#{indexController.usuario.usuario}" required="true"/>
                 
                 <p:outputLabel for="txtClave" value="Clave"/>
-                <p:inputText id="txtClave" value="#{indexController.usuario.clave}" required="true"/>
+                <p:password id="txtClave" value="#{indexController.usuario.clave}" required="true"/>
                 
                 <h:column />
                 <p:commandButton icon="ui-icon-key" value="Ingresar" action="#{indexController.iniciarSesion()}" update="@form" />
