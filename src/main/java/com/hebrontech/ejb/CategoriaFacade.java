@@ -2,6 +2,7 @@
 package com.hebrontech.ejb;
 
 import com.hebrontech.model.Categoria;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -23,6 +24,15 @@ public class CategoriaFacade extends AbstractFacade<Categoria> implements Catego
 
     public CategoriaFacade() {
         super(Categoria.class);
+    }
+
+    @Override
+    public List<Categoria> findActivas() {
+        return em.createQuery(
+                "SELECT c FROM Categoria c WHERE c.estado = true "
+                + "ORDER BY c.nombre",
+                Categoria.class)
+                .getResultList();
     }
     
 }
