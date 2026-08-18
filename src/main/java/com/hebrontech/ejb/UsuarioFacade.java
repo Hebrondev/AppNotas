@@ -32,10 +32,11 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFac
         Usuario usuario = null;
         String consulta;
         try {
-            consulta = "FROM Usuario u WHERE u.usuario = ?1 and u.clave = ?2";
+            consulta = "FROM Usuario u WHERE u.usuario = ?1 and u.clave = ?2 and u.estado = ?3";
             Query query = em.createQuery(consulta);
             query.setParameter(1, us.getUsuario());
             query.setParameter(2, us.getClave());
+            query.setParameter(3, (short) 1);
             
             List<Usuario> lista = query.getResultList();
             if(!lista.isEmpty()){
