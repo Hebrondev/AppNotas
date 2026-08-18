@@ -4,6 +4,7 @@ package com.hebrontech.controller;
 import com.hebrontech.ejb.UsuarioFacadeLocal;
 import com.hebrontech.model.Persona;
 import com.hebrontech.model.Usuario;
+import com.hebrontech.security.ClaveUtil;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -53,6 +54,7 @@ public class UsuarioController implements Serializable{
         try {
             this.usuario.setCodigo(persona);
             this.usuario.setTipo("O");
+            this.usuario.setClave(ClaveUtil.hash(this.usuario.getClave()));
             usuarioEJB.create(usuario);
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "Registro Exitoso"));
         } catch (Exception e) {
