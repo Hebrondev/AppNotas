@@ -17,7 +17,7 @@
                 <p:inputText id="txtClave" value="#{indexController.usuario.clave}" required="true"/>
                 
                 <h:column />
-                <p:commandButton icon="ui-icon-key" value="Ingresar" action="#{indexController.iniciarSesion()}" />
+                <p:commandButton icon="ui-icon-key" value="Ingresar" action="#{indexController.iniciarSesion()}" update="@form" />
             </h:panelGrid>
             <p:separator />
             <p:link value="Crear cuenta" outcome="usuario" />
