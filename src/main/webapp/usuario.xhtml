@@ -38,12 +38,9 @@
             
             <p:fieldset legend="Datos de la Cuenta">
                 <h:panelGrid columns="3" id="pgCuenta">
-                    <p:outputLabel for="cboTipo" value="Tipo de Cuenta" />
-                    <p:selectOneMenu id="cboTipo" value="#{usuarioController.usuario.tipo}" required="true" requiredMessage="Campo requerido">
-                        <f:selectItem itemValue="A" itemLabel="Administrador" />
-                        <f:selectItem itemValue="O" itemLabel="Operario" />
-                    </p:selectOneMenu>
-                    <p:message for="cboTipo" />
+                    <p:outputLabel value="Tipo de Cuenta" />
+                    <h:outputText value="Operario" />
+                    <h:panelGroup />
                     
                     <p:outputLabel for="txtUsuario" value="Usuario" />
                     <p:inputText id="txtUsuario" value="#{usuarioController.usuario.usuario}" required="true" requiredMessage="Campo requerido" />

@@ -52,6 +52,7 @@ public class UsuarioController implements Serializable{
     public void registrar(){
         try {
             this.usuario.setCodigo(persona);
+            this.usuario.setTipo("O");
             usuarioEJB.create(usuario);
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso", "Registro Exitoso"));
         } catch (Exception e) {
