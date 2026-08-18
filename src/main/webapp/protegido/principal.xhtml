@@ -12,6 +12,11 @@
         <h:link value="Categorías" outcome="/protegido/categorias"/>
         <br/>
         <h:link value="Mis notas" outcome="/protegido/notas"/>
+        <h:panelGroup rendered="#{sesionController.tipo eq 'A'}">
+            <br/>
+            <h:link value="Administración"
+                    outcome="/protegido/admin/index"/>
+        </h:panelGroup>
         <h:form>
             <h:commandButton value="Cerrar sesión"
                              action="#{sesionController.cerrarSesion}"/>
