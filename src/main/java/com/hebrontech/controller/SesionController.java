@@ -2,7 +2,10 @@ package com.hebrontech.controller;
 
 import java.io.Serializable;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -27,6 +30,19 @@ public class SesionController implements Serializable {
 
     public boolean isAutenticado() {
         return codigoUsuario != null;
+    }
+
+    public String cerrarSesion() {
+        ExternalContext externalContext =
+                FacesContext.getCurrentInstance().getExternalContext();
+        HttpSession session =
+                (HttpSession) externalContext.getSession(false);
+
+        if (session != null) {
+            session.invalidate();
+        }
+
+        return "/index?faces-redirect=true";
     }
 
     public Integer getCodigoUsuario() {
