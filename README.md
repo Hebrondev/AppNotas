@@ -41,7 +41,7 @@ mvn clean package
 El WAR se genera como:
 
 ```text
-target/AppNotas-1.0-SNAPSHOT.war
+target/AppNotas-1.0.0-legacy-restored.war
 ```
 
 ## Configuración mínima
@@ -52,13 +52,17 @@ target/AppNotas-1.0-SNAPSHOT.war
    GlassFish.
 4. Configurar un connection pool de GlassFish contra `appnotas_legacy`.
 5. Exponer ese pool mediante el recurso JNDI `jdbc/note`.
-6. Desplegar `target/AppNotas-1.0-SNAPSHOT.war`.
+6. Desplegar `target/AppNotas-1.0.0-legacy-restored.war`.
 
 La aplicación queda disponible en:
 
 ```text
 http://<APP_HOST>:<APP_PORT>/AppNotas-1.0-SNAPSHOT/
 ```
+
+El context root conserva intencionalmente el nombre histórico
+`/AppNotas-1.0-SNAPSHOT` para mantener compatibilidad con las rutas validadas;
+no representa la versión Maven del artefacto final.
 
 Las credenciales de MySQL y la configuración específica de cada entorno deben
 mantenerse fuera del repositorio. No se deben versionar contraseñas, backups ni

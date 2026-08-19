@@ -16,7 +16,9 @@ AppNotas conserva la arquitectura Java EE original:
 - MySQL como base de datos.
 
 El artefacto es un WAR y su context root es
-`/AppNotas-1.0-SNAPSHOT`.
+`/AppNotas-1.0-SNAPSHOT`. Este context root histórico se conserva
+intencionalmente para no romper las rutas validadas y es independiente de la
+versión Maven del WAR.
 
 ## Modelo persistente
 
@@ -73,7 +75,7 @@ Desplegar el WAR generado mediante la consola administrativa o una herramienta
 equivalente del servidor:
 
 ```text
-target/AppNotas-1.0-SNAPSHOT.war
+target/AppNotas-1.0.0-legacy-restored.war
 ```
 
 URL base esperada:

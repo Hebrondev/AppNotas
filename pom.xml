@@ -4,7 +4,7 @@
 
     <groupId>com.hebrontech</groupId>
     <artifactId>AppNotas</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.0-legacy-restored</version>
     <packaging>war</packaging>
 
     <name>AppNotas</name>
